@@ -31,7 +31,7 @@ impl Wavetab {
         let wav_spec = reader.spec();
         let samples: Vec<i16> = reader.samples::<i16>().map(|sample| {
             match sample {
-                Ok(s) => s as i16,
+                Ok(s) => s,
                 Err(_) => panic!("Broken sample")
             }
         }).collect();
