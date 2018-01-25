@@ -22,8 +22,11 @@ fn count_notes(wave: &Vec<i16>, sample_rate: u32) -> u32 {
     println!("window: {} -> number of buckets: {}", window_size, wave.len() / window_size);
 
     // we don't care if the signal is positive or negative, thus we use absolute values only
-    let abs_wave: Vec<i16> = wave.abs();  
-    plotting::plot_wave(&abs_wave);
+    //let abs_wave: Vec<i16> = wave.abs();  
+    //plotting::plot_wave(&abs_wave);
+    let clamped_wave: Vec<i16> = wave.clamp_zero();
+    plotting::plot_wave(&clamped_wave);
+    /*
     let mut pos: usize = 0;
     while pos + window_size < abs_wave.len() {
         let max_val = abs_wave[pos..pos+window_size].max_val();
@@ -31,5 +34,6 @@ fn count_notes(wave: &Vec<i16>, sample_rate: u32) -> u32 {
         println!("Max val: {}", max_val);
         pos += window_size;
     }
+    */
     1
 }
